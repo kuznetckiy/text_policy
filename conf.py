@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Редполитика'
-copyright = '2019, Geoscan'
-author = 'Geoscan'
+copyright = '2019, Geoscan LTD'
+author = 'Geoscan LTD'
 
 # The short X.Y version
 version = ''
@@ -39,6 +39,10 @@ release = ''
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.githubpages',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
+
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -74,13 +78,22 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
+
+def setup(app):
+    app.add_stylesheet('style.css')
+
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+#html_theme_options = {'logo_only': True,}
+html_theme_options = {'logo_only': True,}
+
+#html_logo = "_static/images/logo.png"
+#html_favicon = "_static/images/favicon.ico"
+#html_show_sphinx = False
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -101,35 +114,48 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'sphinxdoc'
+htmlhelp_basename = 'text_policy'
 
-
+latex_logo = "_static/images/logo_latex.png"
 # -- Options for LaTeX output ------------------------------------------------
 
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
-    # 'papersize': 'letterpaper',
+     'papersize': 'a4paper',
 
     # The font size ('10pt', '11pt' or '12pt').
     #
-    # 'pointsize': '10pt',
+     'pointsize': '10pt',
 
     # Additional stuff for the LaTeX preamble.
     #
-    # 'preamble': '',
+     'preamble': '',
 
     # Latex figure (float) alignment
     #
-    # 'figure_align': 'htbp',
+     'figure_align': 'H',
+
+	    'fontpkg': r'''
+
+''',
+    # Additional stuff for the LaTeX preamble.
+	'preamble': r"""
+	\usepackage{setspace}
+	\usepackage{fontspec}
+	\setmainfont[Ligatures=TeX]{Georgia}
+	\setsansfont[Ligatures=TeX]{Arial}
+	""",
+
 }
+
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'sphinx.tex', 'Редполитика Documentation',
-     'Geoscan', 'manual'),
+    (master_doc, 'pioneer.tex', '',
+     '', 'manual'),
 ]
 
 
@@ -138,7 +164,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'sphinx', 'Редполитика Documentation',
+    (master_doc, 'Pioneer', 'Pioneer Documentation',
      [author], 1)
 ]
 
@@ -149,8 +175,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'sphinx', 'Редполитика Documentation',
-     author, 'sphinx', 'One line description of project.',
+    (master_doc, 'pioneer', 'Pioneer Documentation',
+     author, 'pioneer', 'One line description of project.',
      'Miscellaneous'),
 ]
 
@@ -171,3 +197,5 @@ epub_title = project
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
+
+
